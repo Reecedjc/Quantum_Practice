@@ -5,12 +5,15 @@ import matplotlib.pyplot as plt
 
 qc = QuantumCircuit(3)
 qc.h(0)
-qc.cx(0, 1)
-qc.cx(1, 2)
+qc.h(1)
+qc.h(2)
+# qc.cx(0, 1)
+# qc.cx(1, 2)
+# qc.x(1)
 qc.measure_all()
 
 sampler = StatevectorSampler()
-result = sampler.run([qc], shots=1024).result()
+result = sampler.run([qc], shots=2048).result()
 count = result[0].data.meas.get_counts()
 
 print(count)
